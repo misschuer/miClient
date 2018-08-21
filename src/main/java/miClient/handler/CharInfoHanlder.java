@@ -13,7 +13,7 @@ import io.netty.channel.Channel;
 public class CharInfoHanlder extends HandlerImpl {
 
 	@Override
-	public void handle(ServerContext player, Channel channel, Packet decoder) {
+	public void handle(ServerContext nil, Channel channel, Packet decoder) {
 		SendCharInfo sci = (SendCharInfo) decoder;
 		if (sci.getChars().size() == 0) {
 			// 创建角色
