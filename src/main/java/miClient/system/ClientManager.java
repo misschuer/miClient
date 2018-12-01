@@ -23,6 +23,8 @@ public enum ClientManager {
 	private final Map<Integer, Handler> handlers = new HashMap<>();
 	private final ExecutorService excutor = Executors.newSingleThreadExecutor();
 	private Channel serverChannel;
+	// 对象管理
+	public final ClientObjectManager objManager = new ClientObjectManager();
 	
 	private ClientManager() {
 		handlers.put(Opcodes.MSG_BINLOGDATAMODIFY, new BinlogDataModifyHandler());
@@ -59,7 +61,7 @@ public enum ClientManager {
 	
 	public void onBinlogDatasUpdated(List<BinlogInfo> binlogInfoList) {
 		for (BinlogInfo binlogInfo : binlogInfoList) {
-			ClientObjectManager.INSTANCE.parseBinlogInfo(binlogInfo);
+			this.objManager.parseBinlogInfo(binlogInfo);
 		}
 	}
 }
